@@ -22,7 +22,7 @@ const NumPad: React.FC<NumPadProps> = ({ click, value }: NumPadProps) => {
   ];
 
   const getDisplayValue = (e) => {
-    let stroke = e.target.value + value;
+    let stroke = Number(e.target.value) + Number(value);
     click(stroke);
   };
   

@@ -9,7 +9,7 @@ body {
 }
 
 .app {
-  height: 100vh;
+  height: 1200px;
   display: flex;
   background: #202124;
   background: linear-gradient(90deg, #202124,#121212,#202124);
