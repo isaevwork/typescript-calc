@@ -1,0 +1,77 @@
+.wrapper {
+  display: flex;
+  width: 600px;
+  height: 350px;
+  /* background: linear-gradient(0deg, #f6f7f8,#e1e8f2,#d9e1ee);*/
+  background: linear-gradient(180deg, #fcfcfc, #f5cec7);
+  border-radius: 0 0 10px 10px;
+  padding: 20px;
+}
+
+.numpadContainer {
+}
+
+.bracketContainer {
+  display: flex;  
+}
+
+.bracketContainer button {
+  width: 130px;
+  height: 60px;
+}
+
+.numbersContainer {
+  display: grid;
+  grid-template-columns: 140px 140px 140px;
+  grid-auto-rows: 60px 60px 60px;
+}
+
+.twoElemContainer {
+  display: flex;
+}
+
+.twoElemContainer button {
+  width: 100px;
+  height: 50px;
+}
+
+.operatorsContainer {
+  display: flex;
+  flex-direction: column;
+  
+}
+
+.operatorsContainer button {
+  width: 130px;
+  height: 50px;
+}
+.operatorsContainer button:first-child {
+  width: 130px;
+  height: 60px;
+}
+
+.elementContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  background: linear-gradient(171deg, #242424,#202124);
+  margin: 5px;
+  color: #fff;
+  font-size: 22px;
+  font-weight: bold;
+  cursor: pointer;
+
+}
+
+.elementContainer:hover {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  background: #2c2d30;
+  margin: 5px;
+  color: #fff;
+  cursor: pointer;
+  font-weight: bold;
+}

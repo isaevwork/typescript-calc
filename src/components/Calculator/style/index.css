@@ -1,0 +1,22 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "PT Sans", "Arial", sans-serif;
+}
+
+.app {
+  height: 100vh;
+  display: flex;
+  background: #202124;
+  background: linear-gradient(90deg, #202124,#121212,#202124);
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+/*  */
