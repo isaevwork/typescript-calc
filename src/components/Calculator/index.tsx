@@ -5,12 +5,12 @@ import './style/index.css'
 
 export default () => {
 
-  const [displayValue, setDisplayValue] = useState<number[]>([]);
+  const [displayValue, setDisplayValue] = useState<string>('');
   
   return (
     <div className='app'>
-        <Display value={displayValue}/>
-        <NumPad value={displayValue} click={setDisplayValue} />
+        <Display dataDisplay={displayValue}/>
+        <NumPad dataDisplay={displayValue} setDisplayValue={setDisplayValue} />
     </div>
   );
 }

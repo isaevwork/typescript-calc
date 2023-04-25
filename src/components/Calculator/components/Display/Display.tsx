@@ -1,14 +1,14 @@
 import "./Display.css";
 
 interface DisplayProps {
-  value?: [],
+  dataDisplay?: [],
 }
 
-const Display: React.FC<DisplayProps> = ({ value }: DisplayProps) => {
+const Display: React.FC<DisplayProps> = ({ dataDisplay }: DisplayProps) => {
   return (
     <div className='displayContainer'>
       <div className='dislpayContent'>
-        {value}
+        {dataDisplay}
       </div>
     </div>
   );

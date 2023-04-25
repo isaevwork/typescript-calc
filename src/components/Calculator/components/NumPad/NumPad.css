@@ -75,3 +75,17 @@
   cursor: pointer;
   font-weight: bold;
 }
+
+.buttonOperator {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  border: 0px;
+  background: #f4ac9f;
+  margin: 5px;
+  color: #ffffff;
+  font-size: 22px;
+  font-weight: bold;
+  cursor: pointer;
+}

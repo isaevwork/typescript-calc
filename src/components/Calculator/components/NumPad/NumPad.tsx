@@ -1,13 +1,11 @@
 import "./NumPad.css";
 
 interface NumPadProps {
-  id: number;
-  value: [];
-  click: (number) => void;
+  dataDisplay: string;
+  setDisplayValue: (value: string) => void;
 }
-const NumPad: React.FC<NumPadProps> = ({ click, value }: NumPadProps) => {
 
-  const numbers = [
+const numbers = [
     '7',
     '8',
     '9',
@@ -21,32 +19,66 @@ const NumPad: React.FC<NumPadProps> = ({ click, value }: NumPadProps) => {
     '.'
   ];
 
-  const getDisplayValue = (e) => {
-    let stroke = Number(e.target.value) + Number(value);
-    click(stroke);
-  };
+const NumPad: React.FC<NumPadProps> = ({ setDisplayValue, dataDisplay }: NumPadProps) => {
   
-  const removeDisplay = () => {
-    click('');
+  const handleClick = (e: MouseEventHandler<HTMLDivElement>) => {
+    const value = e.target.innerText
+    if (value === 'AC') {
+      setDisplayValue('') 
+      return 
+    }
+    if(value === '=') {
+      onEqule(dataDisplay)
+      return
+    }
+    if (value.length === 1) {
+      setDisplayValue(dataDisplay + value)
+    }
+    
+    return
   }
 
-  const addBrackets = (e) => {
-    click([...value, `(${e.target.value})`])
+  const onCalculation = (l: string, op: string, r: string) => {
+    if (op === '+') {
+      return +l + +r
+    }
+    if (op === '-') {
+      return +l - +r
+    }
+    if (op === '÷') {
+      return +l / +r
+    }
+    if (op === '×') {
+      return +l * +r
+    }
+    return 0
   }
 
-  const getAmount = (e) => {
-    console.log(typeof value)
-    const amount = Number(value) + Number(e.target.value);
-    click(amount);
+  const recurCalculation = (arr: string[]) => {
+    if (arr.length === 3) {
+      return String(onCalculation(...arr))
+    }
+
+    if(arr.length > 3) {
+      const [l,op,r, ...tail] = arr
+      const head = String(onCalculation(l,op,r))
+      return recurCalculation([head, ...tail])
+    }
+    return arr
+  }
+ 
+  const onEqule = (value: string) => {
+    const arr = value.match(/\d+|[+-÷×]/g);
+    console.log(recurCalculation(arr))
   }
   
   return (
-    <div className="wrapper">
+    <div className="wrapper" onClick={handleClick}>
       <div className='numpadContainer'>
         <div className="bracketContainer">
-          <button className='elementContainer' onClick={addBrackets} >(</button>
-          <button className='elementContainer'>)</button>
-          <button className='elementContainer'>%</button>
+          <button className='buttonOperator'>(</button>
+          <button className='buttonOperator'>)</button>
+          <button className='buttonOperator'>%</button>
         </div>
         <div className="numbersContainer">
           {
@@ -56,24 +88,23 @@ const NumPad: React.FC<NumPadProps> = ({ click, value }: NumPadProps) => {
                   key={idx}
                   className='elementContainer'
                   value={el}
-                  onClick={getDisplayValue}
                 >
                   {el}
                 </button>
               )
             })
           }
-            <button className='elementContainer'>=</button>
+            <button className='buttonOperator'>=</button>
         </div>
 
         
       </div>
       <div className="operatorsContainer">
-          <button className='elementContainer' onClick={removeDisplay} >AC</button>
-          <button className='elementContainer'>÷</button>
-          <button className='elementContainer'>×</button>
-          <button className='elementContainer'>-</button>
-          <button className='elementContainer' onClick={getAmount} >+</button>
+          <button className='buttonOperator'>AC</button>
+          <button className='buttonOperator'>÷</button>
+          <button className='buttonOperator'>×</button>
+          <button className='buttonOperator'>-</button>
+          <button className='buttonOperator'>+</button>
       </div>
     </div>
   );
