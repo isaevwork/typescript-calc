@@ -28,16 +28,16 @@ const NumPad: React.FC<NumPadProps> = ({ setDisplayValue, dataDisplay }: NumPadP
       return 
     }
     if(value === '=') {
-      onEqule(dataDisplay)
+      onEqual(dataDisplay)
       return
     }
     if (value.length === 1) {
       setDisplayValue(dataDisplay + value)
     }
-    
     return
   }
 
+  
   const onCalculation = (l: string, op: string, r: string) => {
     if (op === '+') {
       return +l + +r
@@ -54,7 +54,11 @@ const NumPad: React.FC<NumPadProps> = ({ setDisplayValue, dataDisplay }: NumPadP
     return 0
   }
 
-  const recurCalculation = (arr: string[]) => {
+  // const getFilteringList = (arr: string[]) => {
+  //   arr.map(el => )
+  // }
+
+  const handleCalculation = (arr: string[]) => {
     if (arr.length === 3) {
       return String(onCalculation(...arr))
     }
@@ -62,15 +66,38 @@ const NumPad: React.FC<NumPadProps> = ({ setDisplayValue, dataDisplay }: NumPadP
     if(arr.length > 3) {
       const [l,op,r, ...tail] = arr
       const head = String(onCalculation(l,op,r))
-      return recurCalculation([head, ...tail])
+      return handleCalculation([head, ...tail])
+      console.log(head)
     }
     return arr
   }
- 
-  const onEqule = (value: string) => {
+
+  
+
+  const onEqual = (value: string) => {
     const arr = value.match(/\d+|[+-÷×]/g);
-    console.log(recurCalculation(arr))
+    const temp = [];
+    const source = [];
+    
+    for (let i = 0; i < arr.length; i++) {
+      if (arr[i] === '×' || arr[i] === '÷') {
+       temp.push(onCalculation(arr[i - 1], arr[i], arr[i + 1]))
+         arr.splice(i - 1, 3)
+      }
+    }
+    for (let j = 0; j < arr.length; j++) {
+      if (arr[j] === "+" || arr[j] === '-') {
+        let removedItem = temp.shift();
+        source.push(removedItem.toString(), arr[j])
+      } else {
+        source.push(arr[j])
+        
+      }
+    }
+    console.log(source);
+    console.log(handleCalculation(source))
   }
+ 
   
   return (
     <div className="wrapper" onClick={handleClick}>
