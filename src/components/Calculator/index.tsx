@@ -6,11 +6,17 @@ import './style/index.css'
 export default () => {
 
   const [displayValue, setDisplayValue] = useState<string>('');
+  const [prevItem, setPrevItem] = useState<string>('');
   
   return (
     <div className='app'>
-        <Display dataDisplay={displayValue}/>
-        <NumPad dataDisplay={displayValue} setDisplayValue={setDisplayValue} />
+        <Display dataDisplay={displayValue} prevItem={prevItem} />
+        <NumPad 
+          dataDisplay={displayValue} 
+          setDisplayValue={setDisplayValue} 
+          prevItem={prevItem}
+          setPrevItem={setPrevItem}
+          />
     </div>
   );
 }

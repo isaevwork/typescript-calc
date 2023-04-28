@@ -1,15 +1,22 @@
 .displayContainer {
   width: 600px;
-  height: 70px;
+  height: 90px;
   background: #fff;
   border-radius: 10px 10px 0 0;
   padding: 20px;
-  display: flex;
-  justify-content: flex-end;
+
 }
 
-.dislpayContent {
-  font-size: 26px;
-    font-family: Roboto, Geneva, Arial, Helvetica, sans-serif;
+.upperWrapper {
+  display: flex;
+  justify-content: flex-end;
+  color: #7d7d7d
+}
+
+.bottomWrapper {
+  font-size: 38px;
+  font-family: Roboto, Geneva, Arial, Helvetica, sans-serif;
   font-weight: bold;
+  display: flex;
+  justify-content: flex-end;
 }

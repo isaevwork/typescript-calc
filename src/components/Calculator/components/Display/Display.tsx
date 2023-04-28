@@ -1,13 +1,17 @@
 import "./Display.css";
 
 interface DisplayProps {
-  dataDisplay?: [],
+  dataDisplay?: string,
+  prevItem?: string,
 }
 
-const Display: React.FC<DisplayProps> = ({ dataDisplay }: DisplayProps) => {
+const Display: React.FC<DisplayProps> = ({ dataDisplay,prevItem }: DisplayProps) => {
   return (
     <div className='displayContainer'>
-      <div className='dislpayContent'>
+      <div className='upperWrapper'>
+        {prevItem}
+      </div>
+      <div className="bottomWrapper">
         {dataDisplay}
       </div>
     </div>
